@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = "Recommended Places";
+    var destination = ViewBag.Destination as string;
+    var places = ViewBag.Places as List<string>;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/recommend.css" />
+}
+
+<div class="recommend-wrapper">
+    <div class="recommend-card">
+        <h2>Top Places to Visit in @destination</h2>
+
+        <div class="place-list">
+            @if (places != null && places.Any())
+            {
+                <ul>
+                    @foreach (var place in places)
+                    {
+                        <li><i class="fas fa-map-marker-alt"></i> @place</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p>No specific recommendations available. Explore local gems!</p>
+            }
+        </div>
+
+        <div class="back-link">
+            <a asp-controller="Home" asp-action="Index"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        </div>
+    </div>
+</div>

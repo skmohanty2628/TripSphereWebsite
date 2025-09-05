@@ -1,0 +1,87 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Contact Us";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/contact.css" />
+}
+
+<!-- Full Height Wrapper -->
+<div class="fullpage-wrapper">
+    <div class="contact-wrapper">
+        <form class="contact-form" id="contactForm">
+            <h2>Get in Touch</h2>
+
+            <label for="PhoneNumber">Phone Number</label>
+            <input id="PhoneNumber" type="tel" placeholder="e.g. +1-555-0123" required />
+
+            <label for="Name">Name</label>
+            <input id="Name" type="text" placeholder="Your Name" required />
+
+            <label for="Email">Email</label>
+            <input id="Email" type="email" placeholder="Your Email" required />
+
+            <label for="Country">Country</label>
+            <input id="Country" type="text" placeholder="Your Country" required />
+
+            <label for="Subject">Subject</label>
+            <input id="Subject" type="text" placeholder="Subject" required />
+
+            <label for="Message">Message</label>
+            <textarea id="Message" rows="5" placeholder="Write your message..." required></textarea>
+
+            <button type="submit">Send Message</button>
+
+            <!-- Auto location display -->
+            <div id="locationInfo"></div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js" crossorigin="anonymous"></script>
+
+    <script>
+        // Auto-fill location
+        window.addEventListener("DOMContentLoaded", async () => {
+            try {
+                const res = await fetch("https://ipapi.co/json/");
+                const data = await res.json();
+                if (data && data.country_name) {
+                    document.getElementById("Country").value = data.country_name;
+                    document.getElementById("locationInfo").innerText =
+                        `🌐 You’re visiting from ${data.city}, ${data.country_name} (IP: ${data.ip})`;
+                }
+            } catch (error) {
+                console.warn("Could not get location:", error);
+            }
+        });
+
+        // Submit form via API
+        document.getElementById("contactForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const data = {
+                phoneNumber: document.getElementById("PhoneNumber").value,
+                name: document.getElementById("Name").value,
+                email: document.getElementById("Email").value,
+                subject: document.getElementById("Subject").value,
+                message: document.getElementById("Message").value
+            };
+
+            const res = await fetch("/api/contactmessages", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            });
+
+            if (res.ok) {
+                alert("Message sent successfully!");
+                document.getElementById("contactForm").reset();
+            } else {
+                alert("Failed to send message.");
+            }
+        });
+    </script>
+}

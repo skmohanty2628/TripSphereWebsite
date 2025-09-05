@@ -1,0 +1,47 @@
+@{
+    Layout = null;
+    ViewData["Title"] = "Login";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - TripSphere</title>
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="auth-wrapper">
+        <img src="~/Image/Plane1.jpg" class="decorative-plane plane-1" />
+        <img src="~/Image/Plane2.jpg" class="decorative-plane plane-2" />
+        <img src="~/Image/Plane3.jpg" class="decorative-plane plane-3" />
+        <img src="~/Image/Plane4.jpg" class="decorative-plane plane-4" />
+        <img src="~/Image/Plane5.jpg" class="decorative-plane plane-5" />
+
+        <form class="auth-form" asp-controller="Auth" asp-action="Login" method="post">
+            <img src="~/Image/logo.jpg" alt="TripSphere Logo" class="login-logo" />
+            <h2>Login to TripSphere</h2>
+
+            @if (TempData["Message"] != null && Context.Request.Method == "POST")
+            {
+                <p class="success-msg">@TempData["Message"]</p>
+            }
+            @if (TempData["Error"] != null)
+            {
+                <p class="error-msg">@TempData["Error"]</p>
+            }
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter Email" required />
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter Password" required />
+
+            <button type="submit">Login</button>
+
+            <p class="signup-text">Don't have an account? <a href="/Auth/Signup">Sign up here</a></p>
+        </form>
+    </div>
+</body>
+</html>

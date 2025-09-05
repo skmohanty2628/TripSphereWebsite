@@ -1,0 +1,79 @@
+/* recommend.css */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom right, #f0f9ff, #e0f2f1);
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.recommend-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.recommend-card {
+    background: white;
+    max-width: 600px;
+    width: 100%;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.recommend-card h2 {
+    font-size: 28px;
+    color: #3A5A40;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.recommend-card h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #3A5A40;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+.place-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.place-list li {
+    font-size: 18px;
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.place-list i {
+    margin-right: 10px;
+    color: #E9C46A;
+}
+
+.back-link {
+    margin-top: 20px;
+}
+
+.back-link a {
+    text-decoration: none;
+    color: #00796B;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.back-link a:hover {
+    color: #004d40;
+}

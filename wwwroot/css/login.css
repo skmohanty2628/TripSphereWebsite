@@ -1,0 +1,153 @@
+/* Base Styles */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom right, #F8F9FA, #E9C46A);
+    overflow: hidden;
+}
+
+.auth-wrapper {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    overflow: hidden;
+}
+
+.auth-form {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    z-index: 2;
+}
+
+.auth-form img.login-logo {
+    width: 60px;
+    margin-bottom: 15px;
+}
+
+.auth-form h2 {
+    margin-bottom: 24px;
+    color: #3A5A40;
+}
+
+.auth-form label {
+    display: block;
+    margin: 12px 0 6px;
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    outline: none;
+}
+
+.auth-form button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: #E9C46A;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.auth-form button:hover {
+    background-color: #D4A373;
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+.auth-form p.signup-text {
+    margin-top: 16px;
+    font-size: 14px;
+}
+
+.auth-form a {
+    color: #3A5A40;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-form a:hover {
+    text-decoration: underline;
+}
+
+.success-msg {
+    color: green;
+    font-weight: 500;
+}
+
+.error-msg {
+    color: red;
+    font-weight: 500;
+}
+
+/* Decorative Plane Styles */
+.decorative-plane {
+    position: absolute;
+    width: 200px;
+    opacity: 1.0;
+    animation: float-rotate 6s ease-in-out infinite;
+    z-index: 1.5;
+    pointer-events: none;
+}
+
+/* Left Side Planes */
+.plane-1 {
+    top: 10%;
+    left: 5%;
+}
+
+.plane-2 {
+    top: 40%;
+    left: 7%;
+    animation-delay: 2s;
+}
+
+.plane-3 {
+    bottom: 10%;
+    left: 10%;
+    animation-delay: 4s;
+}
+
+/* Right Side Planes */
+.plane-4 {
+    top: 20%;
+    right: 8%;
+    animation-delay: 1s;
+}
+
+.plane-5 {
+    bottom: 15%;
+    right: 10%;
+    animation-delay: 3s;
+}
+
+/* Floating and Rotating Keyframes */
+@keyframes float-rotate {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-15px) rotate(15deg);
+    }
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}

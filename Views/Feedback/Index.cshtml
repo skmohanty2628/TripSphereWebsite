@@ -1,0 +1,93 @@
+﻿@model TripSphere.Models.TravelFeedback
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Feedback";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/feedback.css" />
+    <style>
+        .success-msg {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .submitted-feedbacks h2 {
+            margin-top: 40px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .card {
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+}
+
+<div class="hero">
+    <h1>Share Your Journey</h1>
+    <p>Your feedback helps us and fellow travelers</p>
+</div>
+
+@if (TempData["Message"] != null)
+{
+    <p class="success-msg">@TempData["Message"]</p>
+}
+
+<div class="feedback-card">
+    <form asp-action="Submit" method="post" asp-controller="Feedback">
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <label asp-for="Rating"></label>
+            <select asp-for="Rating" class="form-control">
+                <option value="">Select</option>
+                <option value="1">1 Star</option>
+                <option value="2">2 Stars</option>
+                <option value="3">3 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="5">5 Stars</option>
+            </select>
+            <span asp-validation-for="Rating" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Message"></label>
+            <textarea asp-for="Message" class="form-control" placeholder="Share your experience..."></textarea>
+            <span asp-validation-for="Message" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit Feedback</button>
+    </form>
+</div>
+
+@if (ViewBag.FeedbackList != null)
+{
+    <div class="submitted-feedbacks mt-4">
+        <h2>Recent Feedback</h2>
+        @foreach (var item in ViewBag.FeedbackList)
+        {
+            <div class="card mb-3 p-3 border rounded">
+                <p><strong>User:</strong> @(item.User?.Username ?? "Anonymous")</p>
+                <p><strong>Rating:</strong> @item.Rating ⭐</p>
+                <p><strong>Message:</strong> @item.Message</p>
+            </div>
+        }
+    </div>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
+}

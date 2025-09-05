@@ -1,0 +1,148 @@
+﻿@model List<TripSphere.Models.TravelPlan>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Trip Analytics";
+
+    int totalTrips = Model.Count;
+
+    var modeCounts = Model
+        .Where(t => t.TravelMode != null && !string.IsNullOrEmpty(t.TravelMode.Name))
+        .GroupBy(t => t.TravelMode.Name!.Trim().ToLower())
+        .ToDictionary(g => g.Key!, g => g.Count());
+
+    var topDestinations = Model
+        .Where(t => !string.IsNullOrEmpty(t.Destination))
+        .GroupBy(t => t.Destination!.Trim().ToLower())
+        .OrderByDescending(g => g.Count())
+        .Take(7)
+        .ToList();
+
+    var countryCounts = Model
+        .Where(t => !string.IsNullOrEmpty(t.Country))
+        .GroupBy(t => t.Country!.Trim().ToLower())
+        .ToList();
+
+    var destLabels = string.Join(",", topDestinations.Select(d => $"\"{d.First().Destination!.Trim()}\""));
+    var destData = string.Join(",", topDestinations.Select(d => d.Count()));
+    var destColors = string.Join(",", topDestinations.Select((d, i) => $"\"hsl({i * 60}, 70%, 60%)\""));
+
+    var modeLabels = string.Join(",", modeCounts.Keys.Select(k => $"\"{k}\""));
+    var modeData = string.Join(",", modeCounts.Values);
+
+    var countryLabels = string.Join(",", countryCounts.Select(c => $"\"{c.First().Country!.Trim()}\""));
+    var countryData = string.Join(",", countryCounts.Select(c => c.Count()));
+    var countryColors = string.Join(",", countryCounts.Select((c, i) => $"\"hsl({i * 40}, 80%, 65%)\""));
+}
+
+<h2 class="text-center">Trip Analytics</h2>
+
+<section class="auth-form-container" style="max-width: 1200px; margin: 0 auto; padding-top: 30px;">
+    <p><strong>Total Trips:</strong> @totalTrips</p>
+
+    <!-- 🟦 Bar Chart on its own row -->
+    <div style="margin-bottom: 40px; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <canvas id="modeChart" width="800" height="400"></canvas>
+    </div>
+
+    <!-- 🟪 Two Pie Charts side by side -->
+    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 40px;">
+        <div style="flex: 1 1 45%; min-width: 350px; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <canvas id="destChart"></canvas>
+        </div>
+
+        <div style="flex: 1 1 45%; min-width: 350px; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <canvas id="countryChart"></canvas>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Bar Chart: Mode of Travel
+        const modeCtx = document.getElementById('modeChart').getContext('2d');
+        new Chart(modeCtx, {
+            type: 'bar',
+            data: {
+                labels: [@Html.Raw(modeLabels)],
+                datasets: [{
+                    label: 'Number of Trips',
+                    data: [@Html.Raw(modeData)],
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Number of Trips by Mode of Travel'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Number of Trips'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Travel Mode'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Pie Chart: Destinations
+        const destCtx = document.getElementById('destChart').getContext('2d');
+        new Chart(destCtx, {
+            type: 'pie',
+            data: {
+                labels: [@Html.Raw(destLabels)],
+                datasets: [{
+                    label: 'Top Destinations',
+                    data: [@Html.Raw(destData)],
+                    backgroundColor: [@Html.Raw(destColors)]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Distribution of Trips by Destination'
+                    }
+                }
+            }
+        });
+
+        // Pie Chart: Countries
+        const countryCtx = document.getElementById('countryChart').getContext('2d');
+        new Chart(countryCtx, {
+            type: 'pie',
+            data: {
+                labels: [@Html.Raw(countryLabels)],
+                datasets: [{
+                    label: 'Trips by Country',
+                    data: [@Html.Raw(countryData)],
+                    backgroundColor: [@Html.Raw(countryColors)]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Distribution of Trips by Country'
+                    }
+                }
+            }
+        });
+    </script>
+}

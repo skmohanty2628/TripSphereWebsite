@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TripSphere</title>
+
+    <!-- Custom Stylesheets -->
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
+    @RenderSection("Styles", required: false)
+
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- SweetAlert2 Styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #F8F9FA;
+            color: #333;
+        }
+
+        .header-bar {
+            background-color: #3A5A40;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid #F8F9FA;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .main-nav a {
+            display: inline-block;
+            padding: 10px 16px;
+            background: #E9C46A;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+            .main-nav a:hover {
+                background: #D4A373;
+                transform: scale(1.05);
+            }
+
+        .auth-button-inline a {
+            background: #E9C46A;
+            color: #000000;
+            padding: 10px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+            .auth-button-inline a:hover {
+                background: #D4A373;
+                transform: scale(1.05);
+            }
+
+        .social-icons a {
+            color: #F8F9FA;
+            font-size: 18px;
+            margin-left: 10px;
+            transition: color 0.3s ease;
+        }
+
+            .social-icons a:hover {
+                color: #E9C46A;
+            }
+
+        footer.site-footer {
+            background-color: #3A5A40;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-links a {
+            color: #E9C46A;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: 500;
+        }
+
+            .footer-links a:hover {
+                text-decoration: underline;
+            }
+
+        .footer-content p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header-bar">
+        <div class="logo">
+            <a href="/"><img src="~/Image/logo.jpg" alt="TripSphere Logo" /></a>
+        </div>
+
+        <div class="nav-right">
+            <nav class="main-nav">
+                <a href="/">Home</a>
+                <a href="/Trips/Book">Book Now</a>
+                <a href="/Home/About">About Us</a>
+                <a href="/Feedback">Feedback</a>
+                <a href="/Home/Contact">Contact Us</a>
+                <a href="/Analytics">Analytics</a>
+            </nav>
+
+            <span class="auth-button-inline">
+                @if (User?.Identity?.IsAuthenticated == true)
+                {
+                    <a href="/Auth/Logout">Logout (@User.Identity?.Name)</a>
+                }
+                else
+                {
+                    <a href="/Auth/Login">Login / Sign Up</a>
+                }
+            </span>
+
+            <div class="social-icons">
+                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Namratha, Ankita, Shubham, Vaishnavi. All rights reserved.</p>
+            <nav class="footer-links">
+                <a href="/Home/About">About Us</a> |
+                <a href="/Home/Contact">Contact Us</a> |
+                <a href="/Home/Privacy">Privacy Policy</a>
+            </nav>
+        </div>
+    </footer>
+
+    <!-- SweetAlert2 Script -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Page-Specific Scripts -->
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

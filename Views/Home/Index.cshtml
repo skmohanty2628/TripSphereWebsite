@@ -1,0 +1,95 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Home";
+    var fullname = Context.Session.GetString("fullname");
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/index.css" />
+}
+
+<section id="welcome-video">
+    <video autoplay muted loop playsinline class="bg-video">
+        <source src="~/Image/vid.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="video-overlay">
+        @if (!string.IsNullOrEmpty(fullname))
+        {
+            <h2 class="user-greeting">Hello, @fullname 👋</h2>
+        }
+
+        <h2>Welcome to TripSphere</h2>
+        <p>Your personal travel planner for both domestic and international adventures!</p>
+    </div>
+</section>
+
+<section id="gallery">
+    <h2>Popular Destinations</h2>
+    <div class="gallery-grid">
+        <div class="gallery-item">
+            <a asp-controller="Recommend" asp-action="Places" asp-route-destination="Australia">
+                <img src="~/Image/Australia.jpg" alt="Australia" />
+                <p>Australia</p>
+            </a>
+        </div>
+        <div class="gallery-item">
+            <a asp-controller="Recommend" asp-action="Places" asp-route-destination="Paris">
+                <img src="~/Image/paris.jpg" alt="Paris" />
+                <p>Paris, France</p>
+            </a>
+        </div>
+        <div class="gallery-item">
+            <a asp-controller="Recommend" asp-action="Places" asp-route-destination="USA">
+                <img src="~/Image/usa.jpg" alt="USA" />
+                <p>United States</p>
+            </a>
+        </div>
+        <div class="gallery-item">
+            <a asp-controller="Recommend" asp-action="Places" asp-route-destination="Dubai">
+                <img src="~/Image/Dubai.jpg" alt="Dubai" />
+                <p>Dubai</p>
+            </a>
+        </div>
+        <div class="gallery-item">
+            <a asp-controller="Recommend" asp-action="Places" asp-route-destination="Italy">
+                <img src="~/Image/Italy.jpg" alt="Italy" />
+                <p>Italy</p>
+            </a>
+        </div>
+        <div class="gallery-item">
+            <a asp-controller="Recommend" asp-action="Places" asp-route-destination="Greece">
+                <img src="~/Image/Greece.jpg" alt="Greece" />
+                <p>Greece</p>
+            </a>
+        </div>
+        <div class="gallery-item">
+            <a asp-controller="Recommend" asp-action="Places" asp-route-destination="India">
+                <img src="~/Image/India.jpg" alt="India" />
+                <p>India</p>
+            </a>
+        </div>
+        <div class="gallery-item">
+            <a asp-controller="Recommend" asp-action="Places" asp-route-destination="Japan">
+                <img src="~/Image/japan.jpg" alt="Japan" />
+                <p>Japan</p>
+            </a>
+        </div>
+        <div class="gallery-item">
+            <a asp-controller="Recommend" asp-action="Places" asp-route-destination="China">
+                <img src="~/Image/china.jpg" alt="China" />
+                <p>China</p>
+            </a>
+        </div>
+        <div class="gallery-item">
+            <a asp-controller="Recommend" asp-action="Places" asp-route-destination="London">
+                <img src="~/Image/london.jpg" alt="London" />
+                <p>London, UK</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/index.js"></script>
+    <script src="~/js/auth.js"></script>
+}

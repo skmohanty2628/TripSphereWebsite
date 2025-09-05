@@ -1,0 +1,46 @@
+@model TripSphere.Models.TripModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Edit Trip";
+}
+
+<h2 style="text-align:center;">Edit Trip Details</h2>
+<div class="auth-form-container">
+    <form class="auth-form" asp-controller="Trips" asp-action="Edit" method="post">
+        <input type="hidden" name="id" value="@ViewContext.RouteData.Values["id"]" />
+
+        <label for="destination">Destination:</label>
+        <input type="text" id="destination" name="Destination" value="@Model.Destination" required />
+
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="Country" value="@Model.Country" required />
+
+        <label for="duration">Duration:</label>
+        <input type="text" id="duration" name="Duration" value="@Model.Duration" required />
+
+        <label for="budget">Budget:</label>
+        <input type="text" id="budget" name="Budget" value="@Model.Budget" required />
+
+        <label for="mode">Mode of Travel:</label>
+        <select id="mode" name="Mode" required>
+    <option value="">--Select--</option>
+
+    @foreach (var option in new[] { "Bus", "Airplane", "Train" })
+    {
+        <option value="@option" selected="@(Model.Mode == option ? "selected" : null)">
+            @option
+        </option>
+    }
+</select>
+
+
+        <button type="submit">Update Trip</button>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        // Optional JS for validation or alerts
+    </script>
+}

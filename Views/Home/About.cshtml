@@ -1,0 +1,70 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "About Us";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/about.css" />
+}
+
+<section>
+    <h2>About TripSphere</h2>
+    <p>
+        At TripSphere, we believe that travel is more than just visiting new places — it's about creating unforgettable experiences that enrich your life. As a premier travel agency, we specialize in crafting personalized journeys that cater to your unique interests and desires. Whether you're seeking a tranquil beach retreat, an adventurous mountain expedition, or a cultural city tour, our dedicated team is committed to making your travel dreams a reality. With a focus on exceptional service, attentio...
+
+        <h3>Our Mission</h3>
+    <p>Our mission is to provide exceptional travel experiences that inspire and enrich the lives of our clients. We are committed to delivering personalized, high-quality services that cater to the unique needs and preferences of each traveler. Through our dedication to excellence, innovation, and customer satisfaction, we aim to become a trusted partner in our clients' journeys, creating lasting memories and fostering a love for exploration.</p>
+
+    <h3>Our Team</h3>
+    <div class="team-grid">
+        <div class="team-member">
+            <img src="~/Image/team/namratha.jpeg" alt="Namratha Vardhineni" />
+            <h4>Namratha Vardhineni</h4>
+            <p>Developer & Data Analyst</p>
+            <p class="team-bio">
+                Namratha Vardhineni is a Data Analyst with over 4 years of experience in data analysis, statistical modeling, and business intelligence. She has previously worked with Capgemini and Algorics, focusing on workflow automation, data pipeline development, and clinical trial data analysis.
+                Currently pursuing her Master’s in Artificial Intelligence and Business Analytics at the University of South Florida, Namratha brings both technical expertise and a passion for building data-driven solutions. In this project, Namratha served as the Backend & Database Integration Specialist. She developed the “Book Now” API to securely store trip details and the “Contact Us” API to capture and timestamp user messages. Her responsibilities included integrating form submissions with SQL Server using Entity Framework Core, applying server-side validation, and ensuring a robust backend architecture for smooth and secure operations.
+            </p>
+        </div>
+        <div class="team-member">
+            <img src="~/Image/team/ankita.jpeg" alt="Ankita Tripathy" />
+            <h4>Ankita Tripathy</h4>
+            <p>UI/UX Designer and Front-End Developer</p>
+            <p class="team-bio">
+                Ankita Tripathy is a master’s student in Artificial Intelligence and Business Analytics at USF, with over a decade of experience as a Data Analyst in the financial sector. She has deep expertise in credit risk, and data analytics, paired with strong proficiency in modern frontend development. In this project, Ankita served as the UI/UX Designer and Front-End Developer.
+                She transformed static designs into a dynamic, functional web application using MVC architecture. Her contributions included developing the Homepage with interactive destination galleries and video backgrounds, as well as designing an Analytics Dashboard to display travel trends and mode distributions. Ankita implemented fully functional CRUD operations across key entities, ensuring that data updates were reflected in both backend logic and frontend visuals. Using responsive layouts with CSS Grid and Flexbox, and adding interactive features like weather API integration, she focused on delivering a smooth, user-centered digital experience.
+            </p>
+        </div>
+        <div class="team-member">
+            <img src="~/Image/team/subham.jpeg" alt="Subham Mohanty" />
+            <h4>Subham Mohanty</h4>
+            <p>Authentication & UX Flow Architect</p>
+            <p class="team-bio">
+                Subham Kumar Mohanty is a master’s student in Artificial Intelligence and Business Analytics at USF, with 3 years of experience at Wipro in SAP MDM and SAP BW. With expertise in Python, R, SQL, and Salesforce, he has worked across predictive modeling, business analysis, and full-stack development.
+                In this project, Subham served as the Authentication and User Interaction Developer. He built a secure login/signup system using JWT token authentication and ASP.NET Core Identity with Bcrypt hashing. He also developed the feedback submission feature to collect and store user ratings and comments efficiently. For data management, Subham implemented persistent storage using cloud-hosted databases to ensure secure, consistent data handling across sessions.
+                He also designed seamless authentication flows—login, signup, and password reset—while enforcing role-based authorization and mitigating vulnerabilities like SQL injection and XSS. His contributions ensured a secure, responsive, and intuitive user experience across the platform.
+            </p>
+        </div>
+        <div class="team-member">
+            <img src="~/Image/team/vaishnavi.jpg" alt="Vaishnavi Chittumalla" />
+            <h4>Vaishnavi Chittumalla</h4>
+            <p>GitHub & Documentation Manager</p>
+            <p class="team-bio">
+                Vaishnavi is currently pursuing her Master’s in Artificial Intelligence and Business Analytics at the University of South Florida, with 2.5 years of experience in cloud storage at Atos Global Services.
+                In this project, she served as the GitHub & Documentation Manager, overseeing version control and ensuring codebase integrity. She implemented a structured branching strategy, enforced pull request reviews, and resolved merge conflicts to maintain repository stability.
+                Vaishnavi also configured GitHub Actions for CI/CD, automating testing and deployment workflows. Additionally, she managed the Azure deployment process, setting up the ASP.NET Core app on Azure App Service and configuring Azure SQL for production use. She created the final project presentation, highlighting features, system architecture, and individual team contributions.
+            </p>
+        </div>
+    </div>
+
+    <h3>Technical Data Model</h3>
+    <p>To empower travelers through intuitive tools, smart insights, and global access — turning trip ideas into memorable journeys.</p>
+    <div style="text-align:center; margin-top: 20px;">
+        <img src="~/Image/erd-diagram.jpeg" alt="ERD Diagram" style="max-width:90%; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
+    </div>
+
+    <h3>GitHub Link</h3>
+    <div style="text-align:center; margin: 20px 0;">
+        <a class="github-link" href="https://github.com/VaishnaviChitumalla99/Tripsphere_Webapplication_Group7/blob/main/README.md">Visit Our GitHub Repository</a>
+    </div>
+</section>

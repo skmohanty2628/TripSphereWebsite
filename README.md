@@ -1,4 +1,5 @@
-<img width="1536" height="1024" alt="ChatGPT Image Sep 5, 2025, 11_09_21 AM" src="https://github.com/user-attachments/assets/a590ebf1-2fb5-4a83-8c5d-5e5fb26729fb" />
+<img width="1536" height="1024" alt="ChatGPT Image Sep 5, 2025, 11_09_21 AM" src="https://github.com/user-attachments/assets/5d4a094a-1848-440f-a195-13581df5146d" />
+
 🌍 TripSphere – Travel Planning Web App
 🚀 Project Overview
 
